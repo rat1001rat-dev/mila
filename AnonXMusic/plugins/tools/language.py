@@ -34,7 +34,7 @@ async def langs_command(client, message: Message, _):
     )
 
 
-@app.on_callback_query(filters.regex("LG","")& ~BANNED_USERS)
+@app.on_callback_query(filters.regex("LG")& ~BANNED_USERS)
 @languageCB
 async def lanuagecb(client, CallbackQuery, _):
     try:
@@ -64,4 +64,5 @@ async def language_markup(client, CallbackQuery, _):
     await set_lang(CallbackQuery.message.chat.id, langauge)
     keyboard = lanuages_keyboard(_)
     return await CallbackQuery.edit_message_reply_markup(reply_markup=keyboard)
+
 
