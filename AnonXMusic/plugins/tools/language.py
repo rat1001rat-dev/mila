@@ -1,4 +1,4 @@
-from pykeyboard import InlineKeyboard
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, Message
 
@@ -10,27 +10,19 @@ from strings import get_string, languages_present
 
 
 def lanuages_keyboard(_):
-    keyboard = InlineKeyboard(row_width=2)
-    keyboard.add(
-        *[
-            (
-                InlineKeyboardButton(
-                    text=languages_present[i],
-                    callback_data=f"languages:{i}",
-                )
-            )
-            for i in languages_present
-        ]
-    )
-    keyboard.row(
-        InlineKeyboardButton(
-            text=_["BACK_BUTTON"],
-            callback_data=f"settingsback_helper",
-        ),
-        InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data=f"close"),
-    )
-    return keyboard
-
+    keyboard = []
+    for i in languages_present:
+        keyboard.append(
+            [InlineKeyboardButton(
+                text=languages_present[i],
+                callback_data=f"languages:{i}"
+            )]
+        )
+    keyboard.append([
+        InlineKeyboardButton(text=_["BACK_BUTTON"], callback_data="settingsback_helper"),
+        InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data="close"),
+    ])
+    return InlineKeyboardMarkup(keyboard)
 
 @app.on_message(filters.command(["lang", "setlang", "language"]) & ~BANNED_USERS)
 @language
@@ -72,3 +64,4 @@ async def language_markup(client, CallbackQuery, _):
     await set_lang(CallbackQuery.message.chat.id, langauge)
     keyboard = lanuages_keyboard(_)
     return await CallbackQuery.edit_message_reply_markup(reply_markup=keyboard)
+
