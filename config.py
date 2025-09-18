@@ -14,7 +14,7 @@ API_HASH = getenv("API_HASH","d1a8ec645702334d7526b6cfac843d8e")
 BOT_TOKEN = getenv("BOT_TOKEN","8213606703:AAFJG1KzBqG3XEHsX5qO5OPY6Pq0FzaMp2I")
 
 # Get your mongo url from cloud.mongodb.com
-MONGO_DB_URI = getenv("MONGO_DB_URI","mongodb+srv://asheq:.zxcvbnm0.@cluster0.vo7hzsx.mongodb.net/?retryWrites=true&w=majority")
+MONGO_DB_URI = getenv("MONGO_DB_URI","mongodb+srv://Elkber:Elkber@cluster0.feuljpn.mongodb.net/?retryWrites=true&w=majority")
 
 DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 480))
 
@@ -114,3 +114,16 @@ if SUPPORT_CHAT:
         raise SystemExit(
             "[ERROR] - Your SUPPORT_CHAT url is wrong. Please ensure that it starts with https://"
         )
+
+#_____كونفج الحمايه______/
+
+
+import redis
+r = redis.Redis('localhost',decode_responses=True)
+token = '8213606703:AAFJG1KzBqG3XEHsX5qO5OPY6Pq0FzaMp2I'
+hmshelp = token.split(':')[0]
+sudo_id = 5571722913
+botUsername = 'Milaplus_bot'
+from kvsqlite.sync import Client as DB
+ytdb = DB('ytdb.sqlite')
+sounddb = DB('sounddb.sqlite')
