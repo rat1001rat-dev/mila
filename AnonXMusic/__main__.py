@@ -40,7 +40,7 @@ async def init():
 
     # استيراد جميع موديولات الميوزك
     for all_module in ALL_MODULES:
-        importlib.import_module("AnonXMusic.plugins." + all_module)
+        importlib.import_module("AnonXMusic.plugins" + all_module)
     LOGGER("AnonXMusic.plugins").info("✅ Music Modules Loaded Successfully")
 
     # استيراد موديولات الحماية
