@@ -401,7 +401,7 @@ def private_func(c,m,k):
       resize_keyboard=True,
      )
      if m.from_user.id == 5571722913 or m.from_user.id == 5571722913:
-       rank = 'المطور الاسطوره عاشق الصمت 🙈
+       rank = 'المطور الاسطوره عاشق الصمت 🙈'
      else:
        rank = get_rank(m.from_user.id,m.from_user.id)
      return m.reply(quote=True,text=f'{k} هلا {rank}\n{k}  هذه لوحة التحكم الخاصة بالسورس \n\n{k} **Channel Source**', reply_markup=reply_markup)
@@ -1007,3 +1007,4 @@ async def cssworker_url(target_url: str):
     except HTTPError:
 
         return None
+
