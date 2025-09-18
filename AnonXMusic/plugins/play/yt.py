@@ -12,7 +12,7 @@ import glob
 cookies_file = "/root/cookies/cookies.txt"
 os.makedirs("downloads", exist_ok=True)
 
-@app.on_message(filters.command(['نزل', 'حمل', 'تنزيل', 'يوت'], ""))
+@app.on_message(filters.command(['نزل', 'حمل', 'تنزيل', 'يوت','بحث', 'تحميل'], ""))
 async def download_song(client: Client, msg: Message):
     try:
         if len(msg.text.split()) < 2:
