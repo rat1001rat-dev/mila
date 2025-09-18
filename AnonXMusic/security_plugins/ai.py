@@ -1,42 +1,49 @@
-import requests, re
-from pyrogram import filters
+import requests
+import json
 from AnonXMusic import app
-from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
-from pyrogram.enums import ChatMemberStatus, MessageMediaType
+from pyrogram import Client
+from pyrogram import filters
+from pyrogram.types import Message
+from pyrogram import Client, filters
 
 
+url = 'https://us-central1-chat-for-chatgpt.cloudfunctions.net/basicUserRequestBeta'
 
-API_URL = "https://atared.serv00.net/api/chatgpt3.5.php?text="
+def gpt(text) -> str:
+    headers = {
+        'Host': 'us-central1-chat-for-chatgpt.cloudfunctions.net',
+        'Connection': 'keep-alive',
+        'If-None-Match': 'W/"1c3-Up2QpuBs2+QUjJl/C9nteIBUa00"',
+        'Accept': '*/*',
+        'User-Agent': 'com.tappz.aichat/1.2.2 iPhone/15.6.1 hw/iPhone8_2',
+        'Content-Type': 'application/json',
+        'Accept-Language': 'en-GB,en;q=0.9'
+    }
 
-def clean_response(text, lang='ar'):
-    replace_words = ['chat gpt', 'chatgpt', 'gpt', 'open ai', 'openai', 'ai']
-    for word in replace_words:
-        text = re.sub(rf'(?i)\b{re.escape(word)}\b', 'ذكاء' if lang == 'ar' else 'yemen', text)
-    
-    text = text.replace('\\n', '\n').replace('**', '').replace('""', '"').replace('``', '').replace('###', '').replace('__', '')
-    return text
+    data = {
+        'data': {
+            'message':text,
+        }
+    }
 
-def is_admin_or_owner(client, user_id, chat_id):
+    response = requests.post(url, headers=headers, data=json.dumps(data))
     try:
-        member = client.get_chat_member(chat_id, user_id)
-        return member.status in (ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER)
+        result = response.json()["result"]["choices"][0]["text"]
+        return result
     except:
-        return False
+        return None
 
-@app.on_message(filters.regex("^ذكاء (.*)") & filters.group)
-def hams(client, m: Message):
-    text = m.text.split(" ", 1)[1]
-    response = requests.get(f"{API_URL}{text}")
-    
-    if response.status_code != 200:
-        return m.reply("⌯ فشل في الاتصال بالخادم.")
-    
-    try:
-        data = response.json()
-        if not data.get("status"):
-            return m.reply("⌯ حدث خطأ في الاستجابة.")
-        
-        reply_text = clean_response(data["response"], lang='ar')
-        m.reply(reply_text)
-    except Exception as e:
-        m.reply(f"{str(e)}")
+def reply_gpt(client, message):
+    text = message.text.split("ذكاء")[1]
+    reply_text = gpt(text)
+    chat_id = message.chat.id
+    if message.reply_to_message is not None:
+        message_id = message.reply_to_message.message_id
+    else:
+        message_id = None
+    client.send_message(chat_id=chat_id, text=reply_text + "\n\n\n تم استخدام أحدث إصدار من الذكاء الاصطناعي 3.5 turbo\n  شكرا للمطور ", reply_to_message_id=message_id)
+
+@app.on_message(filters.command("ذكاء"))
+def reply(client, message):
+    message.reply_text("تم استلام سؤالك، يرجى الانتظار حتى يتم الرد عليك...")
+    reply_gpt(client, message)
