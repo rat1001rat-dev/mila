@@ -3629,7 +3629,16 @@ def guardCommands(c, m, k, channel):
                 else "YamenThon"
             )
             return m.reply(
-                f"{k} مرحبا بك في اوامر التحكم في بوت ميلا هيلب \n\n~ اعرف اوامر التحكم عن طريق الازرار الموجودة بالاسفل",
+                f"""{k} ✦━───⌬〔 𝗠𝗘𝗟𝗔 𝗛𝗘𝗟𝗣 〕⌬───━✦
+
+𓆩 ✦ مرحبـاً بك في لوحة التحكم ✦ 𓆪
+
+⇾ هذا البوت يجمع بين :
+⌯ نظام الحماية والإدارة الشامل ⚔️
+⌯ تشغيل الميوزك والصوتيات 🎶
+
+~ اختر من الأزرار بالأسفل لمعرفة الأوامر
+""",
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
@@ -3656,6 +3665,11 @@ def guardCommands(c, m, k, channel):
                         [
                             InlineKeyboardButton(
                                 "الذكاء الاصطناعي", callback_data=f"commands6:{m.from_user.id}"
+                            ),
+                        ],
+                        [
+                            InlineKeyboardButton(
+                                "الميـوزك والصوتيات 🎶", callback_data=f"commands9:{m.from_user.id}"
                             ),
                         ],
                         [
@@ -3781,6 +3795,11 @@ def CallbackQueryResponse(c, m, channel):
                         ),
                     ],
                     [
+                            InlineKeyboardButton(
+                                "الميـوزك والصوتيات 🎶", callback_data=f"commands9:{m.from_user.id}"
+                            ),
+                        ],
+                    [
                         InlineKeyboardButton(
                             "البنك", callback_data=f"commands7:{m.from_user.id}"
                         ),
@@ -3851,6 +3870,11 @@ def CallbackQueryResponse(c, m, channel):
                             "الذكاء الاصطناعي", callback_data=f"commands6:{m.from_user.id}"
                         ),
                     ],
+                    [
+                            InlineKeyboardButton(
+                                "الميـوزك والصوتيات 🎶", callback_data=f"commands9:{m.from_user.id}"
+                            ),
+                        ],
                     [
                         InlineKeyboardButton(
                             "البنك", callback_data=f"commands7:{m.from_user.id}"
@@ -3959,6 +3983,11 @@ def CallbackQueryResponse(c, m, channel):
                         ),
                     ],
                     [
+                            InlineKeyboardButton(
+                                "الميـوزك والصوتيات 🎶", callback_data=f"commands9:{m.from_user.id}"
+                            ),
+                        ],
+                    [
                         InlineKeyboardButton(
                             "البنك", callback_data=f"commands7:{m.from_user.id}"
                         ),
@@ -4038,6 +4067,11 @@ def CallbackQueryResponse(c, m, channel):
                         ),
                     ],
                     [
+                            InlineKeyboardButton(
+                                "الميـوزك والصوتيات 🎶", callback_data=f"commands9:{m.from_user.id}"
+                            ),
+                        ],
+                    [
                         InlineKeyboardButton(
                             "البنك", callback_data=f"commands7:{m.from_user.id}"
                         ),
@@ -4111,6 +4145,11 @@ def CallbackQueryResponse(c, m, channel):
                         ),
                     ],
                     [
+                            InlineKeyboardButton(
+                                "الميـوزك والصوتيات 🎶", callback_data=f"commands9:{m.from_user.id}"
+                            ),
+                        ],
+                    [
                         InlineKeyboardButton(
                             "البنك", callback_data=f"commands7:{m.from_user.id}"
                         ),
@@ -4158,6 +4197,11 @@ def CallbackQueryResponse(c, m, channel):
                     [
                         InlineKeyboardButton("الذكاء الاصطناعي ‣", callback_data="None"),
                     ],
+                    [
+                            InlineKeyboardButton(
+                                "الميـوزك والصوتيات 🎶", callback_data=f"commands9:{m.from_user.id}"
+                            ),
+                        ],
                     [
                         InlineKeyboardButton(
                             "البنك", callback_data=f"commands7:{m.from_user.id}"
@@ -4233,6 +4277,11 @@ def CallbackQueryResponse(c, m, channel):
                         ),
                     ],
                     [
+                            InlineKeyboardButton(
+                                "الميـوزك والصوتيات 🎶", callback_data=f"commands9:{m.from_user.id}"
+                            ),
+                        ],
+                    [
                         InlineKeyboardButton("البنك ‣", callback_data="None"),
                         InlineKeyboardButton(
                             "زواج", callback_data=f"commands8:{m.from_user.id}"
@@ -4287,6 +4336,11 @@ def CallbackQueryResponse(c, m, channel):
                         ),
                     ],
                     [
+                            InlineKeyboardButton(
+                                "الميـوزك والصوتيات 🎶", callback_data=f"commands9:{m.from_user.id}"
+                            ),
+                        ],
+                    [
                         InlineKeyboardButton(
                             "البنك", callback_data=f"commands7:{m.from_user.id}"
                         ),
@@ -4296,7 +4350,83 @@ def CallbackQueryResponse(c, m, channel):
             ),
         )
         return
+    
+    if m.data == f"commands9:{m.from_user.id}":
+        m.edit_message_text(
+            """
+✨️ **اوامر الميوزك 🎶**
+♪ اوامر التشغيل بالمجموعات والقنوات  ♪
 
+◈ تشغيل او شغل + اسم الاغنية
+-› لتشغيل بالمجموعة او القناة
+
+◈ انهاء او ايقاف
+-› لايقاف تشغيل الاغنية
+
+ ◈ تخطي
+-› لتشغيل الاغنية التالي وتخطي الحالي
+
+◈ مؤقت
+ -› لايقاف التشغيل بشكل مؤقت
+
+◈  استئناف
+-› لاكمال التشغيل بعد الايقاف المؤقت
+
+◈ تكرار + عدد المرات
+-›يكرر الاغنية الي مشغله انت بالمكالمة
+
+♪ ميزات البوت ♪
+
+◈ غنيلي
+-› سيرسل لك أغنية او شعر عشوائي
+
+◈ بحث او تحميل
+-› لتنزيل الاغنية من اليوتيوب
+---
+""",
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton(
+                            "م1", callback_data=f"commands1:{m.from_user.id}"
+                        ),
+                        InlineKeyboardButton(
+                            "م2", callback_data=f"commands2:{m.from_user.id}"
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            "م3", callback_data=f"commands3:{m.from_user.id}"
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            "الالعاب", callback_data=f"commands4:{m.from_user.id}"
+                        ),
+                        InlineKeyboardButton(
+                            "التسليه", callback_data=f"commands5:{m.from_user.id}"
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            "الذكاء الاصطناعي", callback_data=f"commands6:{m.from_user.id}"
+                        ),
+                    ],
+                    [
+                            InlineKeyboardButton(
+                                "الميـوزك والصوتيات 🎶‣", callback_data="None"),
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            "البنك", callback_data=f"commands7:{m.from_user.id}"
+                        ),
+                        InlineKeyboardButton("زواج ‣", callback_data=f"commands8:{m.from_user.id}"),
+                    ],
+                ]
+            ),
+        )
+        return
+    
     if m.data == "delAdminMSG":
         if str(m.from_user.id) in m.message.text.html:
             return m.message.delete()
