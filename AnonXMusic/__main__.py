@@ -13,6 +13,26 @@ from AnonXMusic.plugins import ALL_MODULES
 from AnonXMusic.utils.database import get_banned_users, get_gbanned
 from config import BANNED_USERS
 
+import redis
+import requests
+
+r = redis.Redis('localhost', decode_responses=True)
+
+from information import token, owner_id
+
+hmshelp = token.split(':')[0]
+r.set(f'{hmshelp}botowner', owner_id)
+
+username = requests.get(f"https://api.telegram.org/bot{token}/getMe").json()["result"]["username"]
+r.set(f'{hmshelp}botusername', username)
+
+if not r.get(f'{hmshelp}:botkey'):
+    r.set(f'{hmshelp}:botkey', '⇜')
+if not r.get(f'{hmshelp}botname'):
+    r.set(f'{hmshelp}botname', 'الين')
+if not r.get(f'{hmshelp}botchannel'):
+    r.set(f'{hmshelp}botchannel', 'ELLNEVIP_BOT')
+
 
 async def init():
     if (
