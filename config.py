@@ -68,6 +68,10 @@ STRING3 = getenv("STRING_SESSION3", None)
 STRING4 = getenv("STRING_SESSION4", None)
 STRING5 = getenv("STRING_SESSION5", None)
 
+API_URL = getenv("https://zylalabs.com/api/6401/youtube+video+capture+api")
+API_KEY = getenv("10126|2dBSgjINAZWe8RRBVA1Hp1al0rt78aOHFqPxck5D")
+DOWNLOADS_DIR = "downloads"
+
 
 BANNED_USERS = filters.user()
 adminlist = {}
